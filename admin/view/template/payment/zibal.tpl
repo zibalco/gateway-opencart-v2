@@ -54,6 +54,20 @@
                 </div>
               </div>
               <div class="form-group">
+                <label class="col-sm-2 control-label" for="zibal_failed_status_id"><span data-toggle="tooltip" title="<?php echo $help_failed_status; ?>"><?php echo $entry_failed_status; ?></span></label>
+                <div class="col-sm-10">
+                  <select name="zibal_failed_status_id" class="form-control">
+                    <?php foreach ($order_statuses as $order_status) { ?>
+                    <?php if ($order_status['order_status_id'] == $zibal_failed_status_id) { ?>
+                    <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+                    <?php } else { ?>
+                    <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                    <?php } ?>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
                 <label class="col-sm-2 control-label" for="zibal_status"><?php echo $entry_status; ?></label>
                 <div class="col-sm-10">
                   <select name="zibal_status" class="form-control">

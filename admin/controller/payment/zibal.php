@@ -1,6 +1,6 @@
 <?php 
 
-class ControllerPaymentPayir extends Controller
+class ControllerPaymentZibal extends Controller
 {
 	private $error = array ();
 
@@ -32,6 +32,8 @@ class ControllerPaymentPayir extends Controller
 
 		$data['entry_api'] = $this->language->get('entry_api');
 		$data['entry_order_status'] = $this->language->get('entry_order_status');
+		$data['entry_failed_status'] = $this->language->get('entry_failed_status');
+		$data['help_failed_status'] = $this->language->get('help_failed_status');
 		$data['entry_status'] = $this->language->get('entry_status');
 		$data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
@@ -97,6 +99,15 @@ class ControllerPaymentPayir extends Controller
 		} else {
 
 			$data['zibal_order_status_id'] = $this->config->get('zibal_order_status_id');
+		}
+
+		if (isset($this->request->post['zibal_failed_status_id'])) {
+
+			$data['zibal_failed_status_id'] = $this->request->post['zibal_failed_status_id'];
+
+		} else {
+
+			$data['zibal_failed_status_id'] = $this->config->get('zibal_failed_status_id');
 		}
 
 		$this->load->model('localisation/order_status');
