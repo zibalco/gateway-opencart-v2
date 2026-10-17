@@ -2,6 +2,9 @@
 
 class ControllerPaymentZibal extends Controller
 {
+	// Plugin version reported to Zibal in the User-Agent header.
+	const PLUGIN_VERSION = '1.1';
+
 	// Raw result of the last call to Zibal, kept for the order history notes.
 	protected $last_response = array ('http_code' => 0, 'error' => '', 'body' => '');
 
@@ -416,6 +419,7 @@ class ControllerPaymentZibal extends Controller
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 			curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+			curl_setopt($ch, CURLOPT_USERAGENT, 'ZibalOpenCart2/' . self::PLUGIN_VERSION . ' (OpenCart ' . (defined('VERSION') ? VERSION : '2.x') . '; PHP ' . PHP_VERSION . ')');
 			// Zibal's API only accepts JSON bodies; form-encoded requests get HTTP 500 / result -1.
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array ('Content-Type: application/json', 'Accept: application/json'));
 			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
